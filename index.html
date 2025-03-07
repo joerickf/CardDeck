@@ -124,6 +124,14 @@
                 }
                 setSelectedCards(shuffledCards);  // Update the selectedCards with shuffled array
             };
+
+            const handleWildcard = () => {
+            // Select a random value and suit
+            const randomCard = {
+                value: values[Math.floor(Math.random() * values.length)],  // Random value
+                suit: suits[Math.floor(Math.random() * suits.length)],      // Random suit
+            };
+        };
     }
 
         // App Component - Entry point to render the Deck component
