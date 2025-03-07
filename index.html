@@ -70,6 +70,17 @@
                 return deck;
             };
 
+            // Handle clicking the deck (select a random card)
+            const handleDeckClick = () => {
+                if (deck.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * deck.length);
+                    const card = deck[randomIndex];
+                    setSelectedCards([...selectedCards, card]); // Add the picked card to selectedCards
+                    setDeck(deck.filter((_, index) => index !== randomIndex)); // Remove the picked card from the deck
+                }
+            };
+
+
 
 
         }
