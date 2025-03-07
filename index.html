@@ -80,8 +80,26 @@
                 }
             };
 
+            // Handle Deal 5 cards
+            const dealCards = (numCards) => {
+                if (deck.length === 0) return;
 
+                // Return all selected cards to the deck
+                const newDeck = [...deck, ...selectedCards];  
+                const shuffledDeck = shuffleDeck(newDeck);  // Shuffle the deck
 
+                const dealtCards = [];
+                for (let i = 0; i < numCards; i++) {
+                    if (shuffledDeck.length === 0) break; // Stop if deck is empty
+                    const randomIndex = Math.floor(Math.random() * shuffledDeck.length);
+                    const card = shuffledDeck[randomIndex];
+                    dealtCards.push(card);
+                    shuffledDeck.splice(randomIndex, 1); // Remove the dealt card from the deck
+                }
+
+                setDeck(shuffledDeck);  // Update deck after dealing cards
+                setSelectedCards(dealtCards);  // Add dealt cards to selectedCards
+            };
 
         }
 
