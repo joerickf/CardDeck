@@ -101,6 +101,12 @@
                 setSelectedCards(dealtCards);  // Add dealt cards to selectedCards
             };
 
+            // Reset the deck and selected cards
+            const handleReset = () => {
+                setDeck(generateDeck());
+                setSelectedCards([]);
+            };
+
         }
 
         // App Component - Entry point to render the Deck component
