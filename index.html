@@ -14,6 +14,35 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <script type="text/babel">
+      // App Component
+      const App = () => {
+            return (
+                <div className="app">
+                    <h1>Card Deck Manipulator</h1>
+                    <Deck />
+                </div>
+            );
+        };
+        
+        const Deck = () => {
+            const suits = ['♥', '♦', '♣', '♠'];
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+            const generateDeck = () => {
+                let deck = [];
+                suits.forEach((suit) => {
+                    values.forEach((value) => {
+                        deck.push({ value, suit });
+                    });
+                });
+                return deck;
+            };
+          }
+
+
+            // Render the App
+        ReactDOM.render(<App />, document.getElementById('root'));
   </script>
 </body>
-</html>    
+</html>
