@@ -107,6 +107,13 @@
                 setSelectedCards([]);
             };
 
+            const handleToss = () => {
+                if (pickedCard) {
+                    setSelectedCards(selectedCards.filter(card => card.value !== pickedCard.value || card.suit !== pickedCard.suit));
+                    setPickedCard(null);
+                }
+            };
+
         }
 
         // App Component - Entry point to render the Deck component
