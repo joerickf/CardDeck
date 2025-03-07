@@ -47,6 +47,20 @@
             const [selectedCards, setSelectedCards] = React.useState([]);
             const [pickedCard, setPickedCard] = React.useState(null);
 
+            const handleCardClick = (value, suit) => {
+                if (pickedCard) {
+                    const newSelectedCards = selectedCards.map(card =>
+                        (card.value === pickedCard.value && card.suit === pickedCard.suit)
+                            ? { value, suit }
+                            : card
+                    );
+                    setSelectedCards(newSelectedCards);
+                    setPickedCard(null);
+                } else {
+                    setPickedCard({ value, suit });
+                }
+            };
+
 
         }
 
