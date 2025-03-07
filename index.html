@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Deck</title>
+    <title>React Card Deck</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
 </head>
 <body>
+    <h1>Card Deck Manipulator</h1>
+
     <div id="root"></div>
 
-    <!-- React and ReactDOM -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-      // App Component
-      const App = () => {
+        // Card Component - Displays individual cards with value, suit, and handles selection
+        const Card = ({ value, suit, isPicked, onClick }) => {
+            const cardClass = `card ${isPicked ? 'picked' : ''}`;
+            const suitClass = suit === '♥' || suit === '♦' ? 'red' : '';
             return (
-                <div className="app">
-                    <h1>Card Deck Manipulator</h1>
-                    <Deck />
+                <div className={cardClass} onClick={() => onClick(value, suit)}>
+                    <span className="card-value">{value}</span>
+                    <span className={`card-suit ${suitClass}`}>{suit}</span>
                 </div>
             );
         };
-        
+
+        // Deck Component - Handles all logic related to deck, cards, and user interactions
         const Deck = () => {
             const suits = ['♥', '♦', '♣', '♠'];
             const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -38,11 +42,25 @@
                 });
                 return deck;
             };
-          }
+
+            const [deck, setDeck] = React.useState(generateDeck());
+            const [selectedCards, setSelectedCards] = React.useState([]);
+            const [pickedCard, setPickedCard] = React.useState(null);
 
 
-            // Render the App
+        }
+
+        // App Component - Entry point to render the Deck component
+        const App = () => {
+            return (
+                <div className="app">
+                    <Deck />
+                </div>
+            );
+        };
+
+        // Render the App
         ReactDOM.render(<App />, document.getElementById('root'));
-  </script>
+    </script>
 </body>
 </html>
