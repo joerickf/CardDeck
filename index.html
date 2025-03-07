@@ -142,7 +142,7 @@
                 ? <div className="no-cards">No Cards Remaining</div>
                 : <div className="deck" onClick={handleDeckClick}>
                     <div className="deck-placeholder">Deck</div>
-                </div>
+                </div>;
 
             return (
                 <div className="deck-container">
@@ -161,6 +161,7 @@
                     {/* Buttons for interaction */}
                     <div className="buttons">
                         <button onClick={() => dealCards(5)}>Deal 5</button>
+                        <button onClick={() => dealCards(7)}>Deal 7</button>
                     </div>
                 </div>
             );
