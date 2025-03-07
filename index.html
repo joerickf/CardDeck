@@ -131,8 +131,41 @@
                 value: values[Math.floor(Math.random() * values.length)],  // Random value
                 suit: suits[Math.floor(Math.random() * suits.length)],      // Random suit
             };
+            
+            // Add the randomly generated card to the selectedCards list
+            setSelectedCards((prevCards) => [...prevCards, randomCard]);
+            };
+
+
+            // Render the deck and selected cards
+            const renderDeck = deck.length === 0
+                ? <div className="no-cards">No Cards Remaining</div>
+                : <div className="deck" onClick={handleDeckClick}>
+                    <div className="deck-placeholder">Deck</div>
+                </div>;
+
+            return (
+                <div className="deck-container">
+                    {renderDeck}
+                    <div className="selected-cards">
+                        {selectedCards.map((card, index) => (
+                            <Card
+                                key={index}
+                                value={card.value}
+                                suit={card.suit}
+                                isPicked={pickedCard && card.value === pickedCard.value && card.suit === pickedCard.suit}
+                                onClick={handleCardClick}
+                            />
+                        ))}
+                    </div>
+                    {/* Buttons for interaction */}
+                    <div className="buttons">
+                        <button onClick={() => dealCards(5)}>Deal 5</button>
+                    </div>
+                </div>
+            );
         };
-    }
+
 
         // App Component - Entry point to render the Deck component
         const App = () => {
